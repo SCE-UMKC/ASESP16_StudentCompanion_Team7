@@ -35,7 +35,9 @@ input, button {
   outline: none;
   border: none;
 }
-
+.scroll {
+    height: 100%;
+}
 .cont {
   position: relative;
   height: 100%;
