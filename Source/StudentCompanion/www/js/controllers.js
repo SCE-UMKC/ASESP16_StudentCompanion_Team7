@@ -53,7 +53,12 @@ angular.module('starter.controllers', [])
     .controller('HomeCtrl', function($scope, $stateParams) {
     $scope.welcome = "Welcome to Student Companion";
     })
-
+.controller('ProfileCtrl',function($scope,$state,$http,$window,$httpParamSerializerJQLike, $timeout)
+			{
+	
+	
+}	   
+		 )
   .controller('LoginCtrl', function($scope, $state, $http, $window, $httpParamSerializerJQLike, $timeout) {
 
     $scope.loginData = {};

@@ -45,14 +45,23 @@ angular.module('starter', ['ionic', 'starter.controllers',])
                     }
                 }
             })
-            .state('app.profile', {
-                url: '/profile',
+		.state('app.contactus', {
+                url: '/contactus',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/profile.html'
+                        templateUrl: 'templates/contactus.html'
                     }
                 }
             })
+            .state('app.profile', {
+						url: '/profile', 
+				views:{
+'menuContent':{
+				 templateUrl: 'templates/profile.html',
+						controller: 'ProfileCtrl'
+						}
+					}
+                })
             .state('app.browse', {
                 url: '/browse',
                 views: {
