@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* Empty. Add your own CSS if you like */
+=======
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -525,3 +528,4 @@ input, button {
     stroke-dashoffset: 0;
   }
 }
+>>>>>>> sc9v9_1

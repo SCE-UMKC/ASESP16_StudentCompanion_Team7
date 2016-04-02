@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
+<<<<<<< HEAD
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+=======
 .controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $state) {
+>>>>>>> sc9v9_1
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -25,8 +29,13 @@ angular.module('starter.controllers', [])
   };
 
   // Open the login modal
+<<<<<<< HEAD
+  $scope.login = function() {
+    $scope.modal.show();
+=======
   $scope.logout = function() {
     $state.go('login');
+>>>>>>> sc9v9_1
   };
 
   // Perform the login action when the user submits the login form
@@ -54,6 +63,8 @@ angular.module('starter.controllers', [])
     .controller('HomeCtrl', function($scope, $stateParams) {
     $scope.welcome = "Welcome to Student Companion";
     })
+<<<<<<< HEAD
+=======
 
   .controller('LoginCtrl', function($scope, $state, $http, $window, $httpParamSerializerJQLike, $timeout) {
 
@@ -122,5 +133,6 @@ angular.module('starter.controllers', [])
     };
 
     })
+>>>>>>> sc9v9_1
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
