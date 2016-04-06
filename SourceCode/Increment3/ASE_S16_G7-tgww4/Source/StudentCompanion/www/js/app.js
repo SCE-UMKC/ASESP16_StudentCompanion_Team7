@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
             .state('app.profile', {
 						url: '/profile', 
 				views:{
-'menuContent':{
+                    'menuContent':{
 				 templateUrl: 'templates/profile.html',
 						controller: 'ProfileCtrl'
 						}
@@ -86,6 +86,15 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
                     'menuContent': {
                         templateUrl: 'templates/home.html',
                         controller: 'HomeCtrl'
+                    }
+                }
+            })
+        .state('app.samenu', {
+                url: '/samenu',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/samenu.html',
+                        controller: 'SamenuCtrl'
                     }
                 }
             })

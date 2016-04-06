@@ -54,6 +54,9 @@ angular.module('starter.controllers', ['starter.services'])
     .controller('HomeCtrl', function($scope, $stateParams) {
     $scope.welcome = "Welcome to Student Companion";
     })
+.controller('SamenuCtrl', function($scope, $stateParams) {
+    $scope.welcome = "Welcome to Student Companion";
+    })
 .controller('ProfileCtrl',function($scope,$state,$http,$window,$httpParamSerializerJQLike, $timeout)
 			{
 	
