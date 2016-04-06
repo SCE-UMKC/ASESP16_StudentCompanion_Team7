@@ -1,0 +1,14 @@
+<ion-view view-title="User Profile">
+  <ion-nav-buttons side="right" ng-show="false">
+    <button class="button button-icon button-clear ion-android-exit" ng-click="logout()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-controller="ProfileCtrl">
+      <div>
+        <h5>{{profileDetails.FirstName}}</h5>
+        <h6>{{profileDetails.LastName}}</h6>
+      </div>
+      </div>
+  </ion-content>
+</ion-view>
