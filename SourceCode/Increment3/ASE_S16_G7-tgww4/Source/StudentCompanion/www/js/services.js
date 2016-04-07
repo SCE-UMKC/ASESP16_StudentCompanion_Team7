@@ -3,8 +3,8 @@
  */
 angular.module('starter.services', [])
     .factory('API', function ($rootScope, $http, $ionicLoading, $window) {
-        var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
-      //var base = "http://localhost:9000";
+      //  var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
+      var base = "http://localhost:9000";
         $rootScope.show = function (text) {
             $rootScope.loading = $ionicLoading.show({
                 content: text ? text : 'Loading',
@@ -61,6 +61,48 @@ angular.module('starter.services', [])
                 //    }
                 //});
             },
+             getShiftDetails: function (form) {
+                console.log("SSO from services.js: " + form.SSO);
+                return $http.post(base+'/shifts', form);//, {
+                //    method: 'GET',
+                //    params: {
+                //        token: form.SSO
+                //    }
+                //});
+            },
+          getOne: function (id, email) {
+            return $http.get(base+'/api/v1/bucketList/data/item/' + id, {
+              method: 'GET',
+              params: {
+                token: SSO
+              }
+            });
+          },
+          saveItem: function (form, email) {
+            return $http.post(base+'/api/v1/bucketList/data/item', form, {
+              method: 'POST',
+              params: {
+                token: email
+              }
+            });
+          },
+          putItem: function (id, form, email) {
+            return $http.put(base+'/api/v1/bucketList/data/item/' + id, form, {
+              method: 'PUT',
+              params: {
+                token: email
+              }
+            });
+          },
+          deleteItem: function (id, email) {
+            return $http.delete(base+'/api/v1/bucketList/data/item/' + id, {
+              method: 'DELETE',
+              params: {
+                token: email
+              }
+            });
+          },
+
             getLibRoomsList: function (form) {
             console.log("SSO from services.js: " + form.SSO);
             return $http.post(base+'/libRoomsList', form);//, {

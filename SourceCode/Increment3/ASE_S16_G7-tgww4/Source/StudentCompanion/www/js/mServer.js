@@ -4,7 +4,7 @@ var mongojs = require('mongojs');
 
 
 
-var db = mongojs('mongodb://studentcompaniondb:studentcompaniondb@ds011399.mlab.com:11399/studentcompaniondb', ['Login', 'Address', 'Library', 'LibraryRooms']);
+var db = mongojs('mongodb://studentcompaniondb:studentcompaniondb@ds011399.mlab.com:11399/studentcompaniondb', ['Login', 'Address', 'Library', 'LibraryRooms','SAShifts']);
 
 var server = restify.createServer();
 
@@ -139,6 +139,45 @@ server.post('/libRoomsList', function (req, res, next) {
   //console.log("User found: " + Login, null, '\t');
 
   return next();
+});
+server.post('/shifts', function (req, res, next) {
+
+
+   var user = req.params;
+    if (req.params.SSO.trim().length == 0) {
+        console.log("Inside if loop");
+        res.writeHead(403, {
+            'Content-Type': 'application/json; charset=utf-8'
+        });
+        res.end(JSON.stringify({
+            error: "Error in mServer.js for Shift details fetch"
+        }));
+    }
+    else {
+        console.log("Inside Shift Server " + user.SSO);
+        db.SAShifts.find(function (err, data) {
+            if(err) {
+                res.writeHead(403, {
+                    'Content-Type': 'application/json; charset=utf-8'
+                });
+                res.end(JSON.stringify({
+                    error: "Error occured during Shifts details fetch"
+                }));
+                console.log("Server: Shift details fetch error");
+            }
+            else {
+                res.writeHead(200, {
+                    'Content-Type': 'application/json; charset=utf-8'
+                });
+                res.end(JSON.stringify(data));
+                console.log("Server: Success Shifts fetch"+data);
+            }
+        });
+    }
+
+    //console.log("User found: " + Login, null, '\t');
+
+    return next();
 });
 
 
