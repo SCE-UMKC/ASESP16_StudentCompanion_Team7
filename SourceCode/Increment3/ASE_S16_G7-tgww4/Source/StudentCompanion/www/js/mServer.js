@@ -111,7 +111,7 @@ server.post('/profile',function(req,res,next)  {
 	}
 	else {
 		console.log("Inside User Profile Server" + user.SSO);
-		db.Profile.findOne(function(err,data) {
+		db.Profile.find(function(err,data) {
 			if(err){
 				res.writeHead(403,{
 					'Content-Type': 'application/json; charset=utf-8'

@@ -4,11 +4,24 @@
     </button>
   </ion-nav-buttons>
   <ion-content>
-    <div ng-controller="ProfileCtrl">
-      <div>
-        <h5>{{profileDetails.FirstName}}</h5>
-        <h6>{{profileDetails.LastName}}</h6>
-      </div>
+    <div ng-controller="ProfileCtrl"> 
+      <div class = list>
+		  <label class = "item">
+		  <span class ="input-label"> First Name :<h6>{{profileDetails.FirstName}}</h6></span> 
+		  </label>
+		  
+		  <label class = "item">
+		  <span class ="input-label"> Last Name:<h6>{{profileDetails.LastName}}</h6></span>			  
+		  </label>
+          
+		  <label class = "item">
+		  <span class ="input-label"> DOB:<h6>{{profileDetails.DOB}}</h6></span>
+		  </label>
+		  
+		  <label class = "item">
+		  <span class ="input-label"> Email Id:<h6>{{profileDetails.Email}}</h6></span>			  
+		  </label>
+	  </div>
       </div>
   </ion-content>
 </ion-view>

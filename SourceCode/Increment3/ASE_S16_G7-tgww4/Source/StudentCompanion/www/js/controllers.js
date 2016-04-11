@@ -178,6 +178,8 @@ angular.module('starter.controllers', ['starter.services'])
 			console.log("Valid User details from controller");
 			console.log("First name:" + data.FirstName);
 			console.log("Last name:" + data.LastName);
+            console.log("First name:" + data.DOB);
+            console.log("First name:" + data.Email);
             $scope.profileDetails = data;
 			$rootScope.hide();
 		}
