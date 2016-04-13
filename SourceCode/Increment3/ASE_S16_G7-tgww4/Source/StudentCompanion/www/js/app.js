@@ -45,11 +45,14 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
                     }
                 }
             })
+<<<<<<< HEAD
 		.state('register', {
       url: '/register',
       templateUrl: 'templates/register.html',
       controller: 'RegisterCtrl'
   })
+=======
+>>>>>>> master
 		.state('app.contactus', {
                 url: '/contactus',
                 views: {
@@ -61,7 +64,11 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
             .state('app.profile', {
 						url: '/profile', 
 				views:{
+<<<<<<< HEAD
 					'menuContent':{
+=======
+'menuContent':{
+>>>>>>> master
 				 templateUrl: 'templates/profile.html',
 						controller: 'ProfileCtrl'
 						}

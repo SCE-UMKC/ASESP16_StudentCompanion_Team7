@@ -2,9 +2,15 @@
  * Created by meets on 4/1/2016.
  */
 angular.module('starter.services', [])
+<<<<<<< HEAD
     .factory('API',function ($rootScope, $http, $ionicLoading, $window) {
        var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
 	//var base = "http://localhost:9000";
+=======
+    .factory('API', function ($rootScope, $http, $ionicLoading, $window) {
+        var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
+      //var base = "http://localhost:9000";
+>>>>>>> master
         $rootScope.show = function (text) {
             $rootScope.loading = $ionicLoading.show({
                 content: text ? text : 'Loading',
@@ -61,6 +67,7 @@ angular.module('starter.services', [])
                 //    }
                 //});
             },
+<<<<<<< HEAD
 			
 			getProfileDetails: function(form){
 				console.log("SSO from services.js" + form.SSO);
@@ -75,6 +82,11 @@ angular.module('starter.services', [])
             getLibRoomsList: function (form) {
             console.log("SSO from services.js: " + form.SSO);
 				return $http.post(base+'/libRoomsList', form);//, {
+=======
+            getLibRoomsList: function (form) {
+            console.log("SSO from services.js: " + form.SSO);
+            return $http.post(base+'/libRoomsList', form);//, {
+>>>>>>> master
             //    method: 'GET',
             //    params: {
             //        token: form.SSO

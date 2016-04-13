@@ -4,7 +4,11 @@ var mongojs = require('mongojs');
 
 
 
+<<<<<<< HEAD
 var db = mongojs('mongodb://studentcompaniondb:studentcompaniondb@ds011399.mlab.com:11399/studentcompaniondb', ['Login', 'Address', 'Library', 'LibraryRooms','Profile']);
+=======
+var db = mongojs('mongodb://studentcompaniondb:studentcompaniondb@ds011399.mlab.com:11399/studentcompaniondb', ['Login', 'Address', 'Library', 'LibraryRooms']);
+>>>>>>> master
 
 var server = restify.createServer();
 
@@ -31,7 +35,11 @@ server.post('/login', function (req, res, next) {
             'Content-Type': 'application/json; charset=utf-8'
         });
         res.end(JSON.stringify({
+<<<<<<< HEAD
             error: "Invalid Credentials in /login"
+=======
+            error: "Invalid Credentials"
+>>>>>>> master
         }));
     }
 
@@ -66,7 +74,11 @@ server.post('/library', function (req, res, next) {
     if (req.params.SSO.trim().length == 0) {
         console.log("Inside if loop");
         res.writeHead(403, {
+<<<<<<< HEAD
 			'Content-Type': 'application/json; charset=utf-8'
+=======
+            'Content-Type': 'application/json; charset=utf-8'
+>>>>>>> master
         });
         res.end(JSON.stringify({
             error: "Error in mServer.js for Library details fetch"
@@ -94,6 +106,7 @@ server.post('/library', function (req, res, next) {
         });
     }
 
+<<<<<<< HEAD
     //console.log("User found: " + Login, null, '\t')
     return next();
 });
@@ -135,6 +148,18 @@ server.post('/profile',function(req,res,next)  {
 });
 
 server.post('/libRoomsList', function (req, res, next) {
+=======
+    //console.log("User found: " + Login, null, '\t');
+
+    return next();
+});
+
+
+
+server.post('/libRoomsList', function (req, res, next) {
+
+
+>>>>>>> master
   var user = req.params;
   if (req.params.SSO.trim().length == 0) {
     console.log("Inside if loop");

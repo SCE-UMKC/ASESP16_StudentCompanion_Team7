@@ -54,7 +54,16 @@ angular.module('starter.controllers', ['starter.services'])
     .controller('HomeCtrl', function($scope, $stateParams) {
     $scope.welcome = "Welcome to Student Companion";
     })
+<<<<<<< HEAD
 
+=======
+.controller('ProfileCtrl',function($scope,$state,$http,$window,$httpParamSerializerJQLike, $timeout)
+			{
+	
+	
+}	   
+		 )
+>>>>>>> master
   .controller('LoginCtrl', function($scope, $state, $http, $window, $httpParamSerializerJQLike, $timeout, API, $rootScope) {
 
     $scope.loginData = {};
@@ -100,7 +109,11 @@ angular.module('starter.controllers', ['starter.services'])
             }
 
         }).error(function (error) {
+<<<<<<< HEAD
           console.log("Invalid Credentials Error");
+=======
+          console.log("Invalid Credentials");
+>>>>>>> master
           $rootScope.hide();
           $rootScope.notify("Invalid Username or password");
             $state.go('login');
@@ -165,6 +178,7 @@ angular.module('starter.controllers', ['starter.services'])
     //};
 
     //})
+<<<<<<< HEAD
 
 .controller('ProfileCtrl',function($scope, $state, $http, $rootScope, $stateParams, API) {
     
@@ -228,6 +242,9 @@ angular.module('starter.controllers', ['starter.services'])
         }
     })
 .controller('LibraryCtrl', function($scope, $state, $rootScope, $stateParams, API) {
+=======
+    .controller('LibraryCtrl', function($scope, $state, $rootScope, $stateParams, API) {
+>>>>>>> master
 
         var SSO = localStorage.getItem("token");
         console.log("SSO from LibraryCtrl: " + SSO);
@@ -246,6 +263,10 @@ angular.module('starter.controllers', ['starter.services'])
                 $rootScope.hide();
                 $rootScope.notify("LibraryCtrl: Error Occured");
                 $state.go('app.home');
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             }
 
         }).error(function (error) {
@@ -296,6 +317,9 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.indexToShow = ($scope.indexToShow + 1) % $scope.items.length;
       };
     })
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
