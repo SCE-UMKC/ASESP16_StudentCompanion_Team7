@@ -78,11 +78,29 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'i
 						}
 					}
                 })
+        .state('app.editprofile',{
+            url:'/editprofile',
+            views:{
+                'menuContent':{
+                    templateUrl:'templates/editprofile.html',
+                    controller:'ProfEditCtrl'
+                }
+            }
+        })
             .state('app.library', {
                 url: '/library',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/library.html',
+                        controller: 'LibraryCtrl'
+                    }
+                }
+            })
+            .state('app.libRoomsList', {
+                url: '/libRoomsList',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/libRoomsList.html',
                         controller: 'LibraryCtrl'
                     }
                 }
@@ -93,6 +111,15 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'i
                     'menuContent': {
                         templateUrl: 'templates/roomReserve.html',
                         controller: 'LibraryCtrl'
+                    }
+                }
+            })
+            .state('app.confirmRoomReserve', {
+                url: '/confirmRoomReserve',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/confirmRoomReserve.html',
+                        controller: 'RoomReserveCtrl'
                     }
                 }
             })

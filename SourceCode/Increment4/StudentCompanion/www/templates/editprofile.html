@@ -1,0 +1,29 @@
+<ion-view view-title="Edit Profile">
+  <ion-nav-buttons side="right" ng-show="false">
+    <button class="button button-icon button-clear ion-android-exit" ng-click="logout()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+
+<div ng-controller="ProfEditCtrl">
+            
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-person placeholder-icon"></i>
+                    <input type="text" placeholder="Email id" ng-model="email">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-person placeholder-icon"></i>
+                    <input type="text" placeholder="SSO" ng-model="sso">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-key placeholder-icon"></i>
+                    <input type="password" placeholder="Password" ng-model="password">
+                </label>
+            <button class="button button-block button-positive" ng-click="update(email,sso,password)"> Update profile </button>
+            
+        </div>
+        
+    </div>
+    </ion-content>
+</ion-view>
