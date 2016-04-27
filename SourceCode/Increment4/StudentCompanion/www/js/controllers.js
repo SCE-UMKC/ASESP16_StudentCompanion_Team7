@@ -43,6 +43,7 @@ $scope.update=function(){
         };
     })
 
+
     .controller('PlaylistsCtrl', function($scope, $state) {
         var SSO = localStorage.getItem("token");
         if(SSO == null) {
@@ -264,6 +265,7 @@ $scope.update=function(){
             $state.go('login');
         }
         $scope.pageClass = 'register';
+//$scope.dob = $filter('date')(new Date(input), 'MM-dd-yyyy');
         $scope.register = function(fname,lname,dob,email,sso1,sso,password) {
             //  inside.postMethod();
             $http({

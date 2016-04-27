@@ -9,35 +9,35 @@
         <form name="myForm" novalidate>
       <div class="list">
 <label class="item item-input">
-          <input type="text" id="fname" class="form-control" placeholder="Enter Firstname" required autofocus ng-model="fname" required>
+          <input type="text" id="fname" class="form-control" placeholder="Enter Firstname (*Required)" required autofocus ng-model="fname" required>
         </label>
         <label class="item item-input">
-          <input type="text" id="lname" class="form-control" placeholder="Enter Lastname" required autofocus ng-model="lname"required>
+          <input type="text" id="lname" class="form-control" placeholder="Enter Lastname (*Required)" required autofocus ng-model="lname"required>
         </label>
           <label class="item item-input">
-          <input type="text" id="lname" class="form-control" placeholder="Enter Date Of Birth" required autofocus ng-model="dob">
+          <input type="date" id="dob" class="form-control" placeholder="Enter Date Of Birth" required autofocus ng-model="dob" >
         </label>
           <label class="item item-input">
-          <input type="text" id="lname" class="form-control" placeholder="Enter MailId" required autofocus ng-model="email">
+          <input type="email" id="email" class="form-control" placeholder="Enter MailId (*Required)" required autofocus ng-model="email">
         </label>        
         <label class="item item-input">  
-          <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Enter SSO" required autofocus ng-model="sso1" required>
+          <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Enter SSO (Ex: ABCDE)" ng-pattern="/^[A-Z0-9]" required autofocus ng-model="sso1" required>
         </label>
           <label class="item item-input">  
-          <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Re-Enter SSO" required autofocus ng-model="sso" required>
+          <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Re-Enter SSO (Ex: ABCDE) " required autofocus ng-model="sso" required>
         </label>
         <label class="item item-input">
-          <input type="password" id="password" class="form-control" placeholder="Enter Password" required autofocus ng-model="password" required>   
+          <input ng-minlength="5"type="password" id="password" class="form-control" placeholder="Enter Password" required autofocus ng-model="password" required>  
         </label>
 <div class="padding">
             <p ng-show="myForm.fname.$error.required">* First Name is required</p>
                 <p ng-show="myForm.lname.$error.required">* Last Name is required</p>
-            <p ng-show="myForm.email.$invalid && !myForm.email.$pristine">* Email must be an email address</p>
-            <p ng-show="myForm.sso.$error.minlength">* Username must be longer than 5 characters</p>
-                <p ng-show="myForm.sso1.$error.minlength">* Username must be longer than 5 characters</p>
+            <p ng-show="myForm.sso.$error.minlength">* SSO must be longer than 5 characters</p>
+                <p ng-show="myForm.sso1.$error.minlength">* SSO must be longer than 5 characters</p>
+            <p ng-show="myForm.sso.$error.maxlength">* SSO must be longer than 5 characters</p>
+                <p ng-show="myForm.sso1.$error.maxlength">* SSO must be longer than 5 characters</p>
             <p ng-show="myForm.password.$error.required">* Password is required</p>
-            <p ng-show="myForm.sso.$error.minlength">* Password must be longer than 6 characters</p>
-                <p ng-show="myForm.sso1.$error.minlength">* Password must be longer than 6 characters</p>
+            
         </div>
           <div class="padding">
           <button class="button button-block button-positive padding-horizontal" ng-disabled="myForm.$invalid"
