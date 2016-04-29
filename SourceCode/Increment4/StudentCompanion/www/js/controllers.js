@@ -28,9 +28,12 @@ angular.module('starter.controllers', ['starter.services', 'ionic-datepicker'])
             localStorage.setItem("token", "");
             $state.go('login');
         };
-$scope.update=function(){
+$scope.updateprofile=function(){
     $state.go('app.editprofile');
 };
+    $scope.updatepassword=function(){
+        $state.go('app.editpassword');
+    };
         // Perform the login action when the user submits the login form
         $scope.doLogin = function() {
             console.log('Doing login');
@@ -117,20 +120,6 @@ $scope.update=function(){
 
         $scope.doLogin = function(sso, password) {
             console.log('Doing login');
-
-            //var result = API.login({
-            //    SSO: sso,
-            //    Password: password
-            //});
-            //if(result == null)
-            //{
-            //    console.log("Invalid Credentials");
-            //}
-            //else {
-            //    console.log("Valid Credentials");
-            // //   console.log(data.toString());
-            //}
-            //console.log("Var: " + result.toString());
             API.login({
                 SSO: sso,
                 Password: password
@@ -171,12 +160,25 @@ $scope.update=function(){
 
                         localStorage.setItem("SSO", data.SSO);
                         localStorage.setItem("FullName", data.FirstName + " " + data.LastName);
+                        localStorage.setItem("FirstName", data.FirstName);
+                        localStorage.setItem("LastName" , data.LastName);
+                        localStorage.setItem("DOB" , data.DOB);
                         localStorage.setItem("Email", data.Email);
-                        localStorage.setItem("Mobile", data.Mobile);
+                        localStorage.setItem("MobileNo", data.MobileNo);
+                        localStorage.setItem("Address1", data.Address1);
+                        localStorage.setItem("Address1", data.Address2);
+                        localStorage.setItem("City", data.City);
+                        localStorage.setItem("State", data.State);
+                        localStorage.setItem("ZipCode", data.ZipCode);
                         console.log("First name: " + data.FirstName);
                         console.log("Last name: " + data.LastName);
                         console.log("Mobile: " + data.Mobile);
                         console.log("Email: " + data.Email);
+                         console.log("Address: " + data.Address1);
+                        console.log("Address: " + data.Address2);
+                        console.log("City: " + data.City);
+                        console.log("State: " + data.State);
+                        console.log("Zip: " + data.ZipCode);
                         console.log("controllers.js: User profile data cached");
                     }
                     else {
@@ -200,7 +202,6 @@ $scope.update=function(){
             SSO: SSO
         }).success(function (data) {
             if(data != null) {
-
                 console.log("Valid User details from controller");
                 console.log("First name: " + data.FirstName);
                 console.log("Last name: " + data.LastName);
@@ -224,66 +225,131 @@ $scope.update=function(){
             $state.go('app.home');
         });
     })
-.controller('ProfEditCtrl', function($scope, $state, $http, $window, $httpParamSerializerJQLike) {
-    var SSO = localStorage.getItem("token");
-        console.log("SSO from ProfileCtrl: " + SSO);
-     $scope.pageClass = 'editprofile';
-    $scope.update = function(email,sso,password){
-       // inside.putMethod();
-        
-        $http({
-                method: 'PUT',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Profile?apiKey=SDcvFcjpazjLlI1FnNUIfuqotvdnUsTy',
-                data: JSON.stringify({
-                    Email:email
-                }),
-                contentType: "application/json"
-            })
-              $http({
-                method: 'PUT',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Login?apiKey=SDcvFcjpazjLlI1FnNUIfuqotvdnUsTy',
-                data: JSON.stringify({
-                    SSO: sso,
-                    Password: password
-                }),
-                contentType: "application/json"
-            }).success(function() {
-                $scope.SSO = "";
-                $scope.Password = "";
-                alert("Updated successfully ");
-                $state.go('profile');
-                //$scope.msg ="User created successfully";
-                //$window.location.href="index.html";
-            })
+.controller('PwdEditCtrl',function($scope, $state, $http, $window, $rootScope,API,$httpParamSerializerJQLike) {
+    
+     var SSO = localStorage.getItem("token");
+     console.log("SSO from PwdEditCtrl: " + SSO);
+    $scope.updatepassword = function(password){
+        console.log('Updating user password'); 
+        API.editUserPassword({
+            SSO:SSO,
+            Password:password
+        }).success(function(data) {
+            if(data != null) {
+                console.log("Valid credentials from controller");
+                alert("Password changed successfully!");
+                $state.go('login');
+                $rootScope.setToken(data.SSO);
+                localStorage.setItem("Password",password);
+        }
+            else {
+                console.log("Controllers.js:Unable to edit user password");
+            }
+        }).error(function(error){
+            console.log("controllers.js: Error in controller: " + error);
+             $state.go('app.profile');
+        });
     }
 })
-    .controller('RegisterCtrl', function($scope, $state, $http, $window, $httpParamSerializerJQLike) {
+.controller('ProfEditCtrl', function($scope, $state, $http, $window, $rootScope,API,$httpParamSerializerJQLike) {
+    var SSO = localStorage.getItem("token");
+        console.log("SSO from ProfEditCtrl: " + SSO);
+    
+    $scope.Email= localStorage.getItem("Email");
+    
+    console.log("Email from ProfEditCtrl " + $scope.Email);
+    
+    $scope.FirstName= localStorage.getItem("FirstName");
+    $scope.LastName= localStorage.getItem("LastName");
+    $scope.DOB= localStorage.getItem("DOB");
+    $scope.MobileNo= localStorage.getItem("MobileNo");
+    $scope.Email= localStorage.getItem("Email");
+    $scope.Address1= localStorage.getItem("Address1");
+    $scope.Address2= localStorage.getItem("Address2");
+    $scope.City= localStorage.getItem("City");
+    $scope.State= localStorage.getItem("State");
+    $scope.ZipCode= localStorage.getItem("ZipCode");
+    
+        $scope.update = function(MobileNo,Address1,Address2,City,State,ZipCode) {
+            console.log('Updating user profile');  
+            API.editUserProfile({  
+               //FirstName:FirstName,
+               // LastName:LastName,
+               // DOB:DOB,
+                MobileNo:MobileNo,
+               // Email:Email,
+                Address1:Address1,
+                Address2:Address2,
+                City:City,
+                State:State,
+                ZipCode:ZipCode,
+                SSO: SSO
+                //Password: password
+            }).success(function (data) {
+                if(data != null) {
+                    console.log("Valid credentials from controller");
+                       // $rootScope.setToken(data.SSO); 
+                    console.log("SSO inside ProfEditCtrl" + SSO);
+                    // create a session kind of thing on the client side
+                    alert("Profile updated successfully!");
+                $state.go('app.home');
+                $rootScope.setToken(data.SSO);
+                     //  localStorage.setItem("FirstName", FirstName);
+                   // localStorage.setItem("LastName", LastName);
+                   // localStorage.setItem("DOB", DOB);
+                   // localStorage.setItem("Email", Email);
+                    localStorage.setItem("MobileNo", MobileNo);
+                    localStorage.setItem("Address1", Address1);
+                    localStorage.setItem("Address2", Address2);
+                    localStorage.setItem("City", City);
+                    localStorage.setItem("State", State);
+                    localStorage.setItem("ZipCode", ZipCode);
+                       // localStorage.setItem("FullName", data.FirstName + " " + data.LastName);
+                       // localStorage.setItem("FirstName",fname);
+                      //  localStorage.setItem("Password", data.password);
+                    }
+                    else {
+                        console.log("controllers.js: Unable to edit user profile");
+                    }
 
-        $scope.pageClass = 'login';
+                }).error(function (error) {
+                    console.log("controllers.js: Error in controller: " + error);
+                    $state.go('app.profile');
+            });
+        }
+})
+    .controller('RegisterCtrl', function($scope, $state, $http, $window, API,$httpParamSerializerJQLike) {
+$scope.pageClass = 'login';
         $scope.login = function() {
             console.log("Login page !");
             $state.go('login');
         }
         $scope.pageClass = 'register';
 //$scope.dob = $filter('date')(new Date(input), 'MM-dd-yyyy');
-        $scope.register = function(fname,lname,dob,email,sso1,sso,password) {
+        $scope.register = function(fname,lname,dob,email,sso1,sso,password,mobile,address1,address2,city,state,zip) {
             //  inside.postMethod();
             $http({
                 method: 'POST',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Profile?apiKey=SDcvFcjpazjLlI1FnNUIfuqotvdnUsTy',
+                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Profile?apiKey=eRFbEzp92JBMvhd1PabC1BJKBxuayXzI',
                 data: JSON.stringify({
                     FirstName: fname,
                     LastName: lname,
                     DOB:dob,
                     Email:email,
-                    SSO: sso1
+                    SSO: sso1,
+                    MobileNo:mobile,
+                    Address1:address1,
+                    Address2:address2,
+                    City:city,
+                    State:state,
+                    ZipCode:zip
                 }),
                 contentType: "application/json"
             })
             
             $http({
                 method: 'POST',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Login?apiKey=SDcvFcjpazjLlI1FnNUIfuqotvdnUsTy',
+                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Login?apiKey=eRFbEzp92JBMvhd1PabC1BJKBxuayXzI',
                 data: JSON.stringify({
                     SSO: sso,
                     Password: password
@@ -298,6 +364,8 @@ $scope.update=function(){
                 //$window.location.href="index.html";
             })
         }
+    
+       
     })
     .controller('RoomReserveCtrl', function($scope, $state, $rootScope, $stateParams, API,ionicDatePicker, $filter, $window) {
         $scope.roomNo = localStorage.getItem("roomNo");

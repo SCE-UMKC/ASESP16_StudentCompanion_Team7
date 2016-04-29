@@ -87,6 +87,15 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'i
                 }
             }
         })
+        .state('app.editpassword',{
+            url:'/editpassword',
+            views:{
+                'menuContent':{
+                    templateUrl:'templates/editpassword.html',
+                  // controller:'PwdEditCtrl'
+                }
+            }
+        })
             .state('app.library', {
                 url: '/library',
                 views: {

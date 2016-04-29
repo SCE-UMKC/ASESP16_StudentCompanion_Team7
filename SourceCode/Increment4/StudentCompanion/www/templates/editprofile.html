@@ -4,26 +4,36 @@
     </button>
   </ion-nav-buttons>
   <ion-content>
-
 <div ng-controller="ProfEditCtrl">
-            
+
             <div class="list list-inset">
+                
                 <label class="item item-input">
-                    <i class="icon ion-person placeholder-icon"></i>
-                    <input type="text" placeholder="Email id" ng-model="email">
+                    <i class="icon ion-iphone placeholder-icon"></i>
+                    <input type="text" value={{MobileNo}} ng-model="MobileNo">
                 </label>
                 <label class="item item-input">
-                    <i class="icon ion-person placeholder-icon"></i>
-                    <input type="text" placeholder="SSO" ng-model="sso">
+                    <i class="icon ion-ios-location placeholder-icon"></i>
+                    <input type="text" value={{Address1}} ng-model="Address1">
                 </label>
                 <label class="item item-input">
-                    <i class="icon ion-key placeholder-icon"></i>
-                    <input type="password" placeholder="Password" ng-model="password">
+                    <i class="icon ion-ios-location placeholder-icon"></i>
+                    <input type="text" value={{Address2}} ng-model="Address2">
                 </label>
-            <button class="button button-block button-positive" ng-click="update(email,sso,password)"> Update profile </button>
-            
-        </div>
-        
-    </div>
+                <label class="item item-input">
+                    <i class="icon ion-ios-location placeholder-icon"></i>
+                    <input type="text" value={{City}} ng-model="City">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-ios-location placeholder-icon"></i>
+                    <input type="text" value={{State}} ng-model="State">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-ios-location placeholder-icon"></i>
+                    <input type="text" value={{ZipCode}} ng-model="ZipCode">
+                </label>
+<button class="button button-block button-positive" ng-click ="update(MobileNo,Address1,Address2,City,State,ZipCode)"> Update profile </button>            
+        </div>      
+    </div> 
     </ion-content>
 </ion-view>

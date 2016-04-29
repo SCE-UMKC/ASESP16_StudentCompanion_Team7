@@ -3,8 +3,8 @@
  */
 angular.module('starter.services', [])
     .factory('API', function ($rootScope, $http, $ionicLoading, $window) {
-        var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
-      //var base = "http://localhost:9000";
+        //var base = "http://ec2-52-34-188-157.us-west-2.compute.amazonaws.com";
+     var base = "http://localhost:9000";
         $rootScope.show = function (text) {
             $rootScope.loading = $ionicLoading.show({
                 content: text ? text : 'Loading',
@@ -67,22 +67,21 @@ angular.module('starter.services', [])
             },
 			getProfileDetails: function(form){
 				console.log("services.js: SSO from getProfileDetails: " + form.SSO);
-				return $http.post(base+'/profile', form);//,{
-                  //  method : 'GET',
-                    //    params:{
-                      //      token:form.SSO
-                      //  }   
-               // }
+				return $http.post(base+'/profile', form);
 			},
+            
             getLibRoomsList: function (form) {
             console.log("SSO from services.js: " + form.SSO);
-            return $http.post(base+'/libRoomsList', form);//, {
-            //    method: 'GET',
-            //    params: {
-            //        token: form.SSO
-            //    }
-            //});
+            return $http.post(base+'/libRoomsList', form);
           },
+            editUserProfile: function(form) {
+              console.log("services.js: SSO from editUserProfile:" + form.SSO);
+                return $http.post(base+'/editUserProfile',form);
+            },
+            editUserPassword: function(form) {
+              console.log("services.js: SSO from editUserPassword:" + form.SSO);
+                return $http.post(base+'/editUserPassword',form);
+            },
             cacheUserProfile: function (form) {
                 console.log("services.js: SSO from cacheUserProfile: " + form.SSO);
                 return $http.post(base+'/cacheUserProfile', form);

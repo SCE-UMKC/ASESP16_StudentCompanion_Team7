@@ -55,11 +55,78 @@ server.post('/login', function (req, res, next) {
             console.log("Server: Success Login");
         }
     });
-    //console.log("User found: " + Login, null, '\t');
-
     return next();
 });
 
+server.post('/editUserPassword',function(req,res,next){
+    var user = req.params;
+    if (user.SSO.trim().length == 0) {
+        res.writeHead(403, {
+            'Content-Type': 'application/json; charset=utf-8'
+        });
+        res.end(JSON.stringify({
+            error: "Invalid Credentials in login"
+        }));
+    }
+   
+        console.log("Inside Server " + user.SSO);
+    console.log("old password " + req.params.Password);
+        db.Login.update({"SSO":user.SSO},{$set:{"Password":req.params.Password}},
+                       {returnNewDocument:true},function(err,data){
+                                if(err){
+         res.writeHead(403, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({
+                error: "Invalid User Credentials"
+            }));
+            console.log("Server: Invalid Credentials");
+    }
+         else {
+            res.writeHead(200, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify(data));
+            console.log("Server: Success Login");
+        }   
+    });
+
+    return next();
+});
+server.post('/editUserProfile', function(req,res,next) {
+    
+    var user = req.params;
+    if (user.SSO.trim().length == 0) {
+        res.writeHead(403, {
+            'Content-Type': 'application/json; charset=utf-8'
+        });
+        res.end(JSON.stringify({
+            error: "Invalid Credentials in login"
+        }));
+    }
+ 
+    console.log("Inside Server " + user.SSO);
+    db.Profile.update({"SSO": user.SSO},{$set:{"MobileNo":req.params.MobileNo,"Address1":req.params.Address1,"Address2":req.params.Address2,"City":req.params.City,"State":req.params.State,"ZipCode":req.params.ZipCode}},{returnNewDocument:true},function(err,data){
+                                if(err){
+         res.writeHead(403, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({
+                error: "Invalid User Credentials"
+            }));
+            console.log("Server: Invalid Credentials");
+    }
+    else {
+            res.writeHead(200, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify(data));
+            console.log("Server: Success Login");
+        }
+});
+ 
+return next();    
+});
 
 server.post('/cacheUserProfile', function (req, res, next) {
 
