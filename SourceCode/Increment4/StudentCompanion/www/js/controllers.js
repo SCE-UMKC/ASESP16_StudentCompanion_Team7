@@ -313,7 +313,8 @@ $scope.updateprofile=function(){
             });
         }
 })
-    .controller('RegisterCtrl', function($scope, $state, $http, $window, API,$httpParamSerializerJQLike) {
+    .controller('RegisterCtrl', function($scope, $state, $http, $window, API,$httpParamSerializerJQLike,$ionicPopup) {
+    
 $scope.pageClass = 'login';
         $scope.login = function() {
             console.log("Login page !");
@@ -339,10 +340,12 @@ $scope.pageClass = 'login';
             }).success(function (data) {
                 if(data != null) {
                     console.log("Inside RegisterCtrl");
-                       // $rootScope.setToken(data.SSO); 
-                   // console.log("SSO inside ProfEditCtrl" + SSO);
-                    // create a session kind of thing on the client side
-                    alert("User created successfully!");
+                    var showingText = "User created successfully";
+                      var alert = $ionicPopup.alert({
+                            title: 'Alert',
+                template: showingText
+                        })
+                   // alert("User created successfully!");
                 $state.go('login');
                 //$rootScope.setToken(data.SSO);
                     localStorage.setItem("SSO",SSO);
