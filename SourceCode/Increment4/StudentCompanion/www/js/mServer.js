@@ -93,6 +93,56 @@ server.post('/editUserPassword',function(req,res,next){
 
     return next();
 });
+server.post('/registerUser',function(req,res,next){
+     var user = req.params;
+    if (user.SSO.trim().length == 0) {
+        res.writeHead(403, {
+            'Content-Type': 'application/json; charset=utf-8'
+        });
+        res.end(JSON.stringify({
+            error: "Invalid Credentials in login"
+        }));
+    }
+ console.log("Inside Server ");  db.Profile.insert({SSO:user.SSO,FirstName:user.FirstName,LastName:user.LastName,DOB:user.DOB,MobileNo:user.MobileNo,Email:user.Email,Address1:user.Address1,Address2:user.Address2,City:user.City,State:user.State,ZipCode:user.ZipCode},function(err,data){
+                                if(err){
+         res.writeHead(403, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({
+                error: "Invalid User Credentials"
+            }));
+            console.log("Server: Invalid Credentials");
+    }
+    else {
+            res.writeHead(200, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify(data));
+            console.log("Server: Success Login");
+        }
+});
+    db.Login.insert({SSO:user.SSO,Password:user.Password},function(err,data){
+                                if(err){
+         res.writeHead(403, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({
+                error: "Invalid User Credentials"
+            }));
+            console.log("Server: Invalid Credentials");
+    }
+    else {
+            res.writeHead(200, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify(data));
+            console.log("Server: Success Login");
+        }
+});
+
+return next();    
+});
+
 server.post('/editUserProfile', function(req,res,next) {
     
     var user = req.params;
@@ -571,13 +621,9 @@ server.post('/ownRoomReserveList', function (req, res, next) {
 
     return next();
 });
-
 server.listen(9000, function () {
     console.log("Server started @ 9000");
 });
-
-
-
 server.get("/products", function (req, res, next) {
     db.Address.find(function (err, Address) {
         res.writeHead(200, {

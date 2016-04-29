@@ -9,43 +9,52 @@
         <form name="myForm" novalidate>
       <div class="list">
 <label class="item item-input">
-          <input type="text" id="fname" class="form-control" placeholder="Firstname" required autofocus ng-model="fname" required>
+    <i class="icon ion-person placeholder-icon"></i>
+          <input type="text" id="fname" class="form-control" placeholder="Firstname" required autofocus ng-model="FirstName" required>
         </label>
         <label class="item item-input">
-          <input type="text" id="lname" class="form-control" placeholder="Lastname" required autofocus ng-model="lname" required>
+            <i class="icon ion-person placeholder-icon"></i>
+          <input type="text" id="lname" class="form-control" placeholder="Lastname" required autofocus ng-model="LastName" required>
         </label>
           <label class="item item-input">
-          <input type="text" id="dob" class="form-control" placeholder="Date Of Birth" required autofocus ng-model="dob" >
+              <i class="icon ion-calendar placeholder-icon"></i>
+          <input type="text" id="dob" class="form-control" placeholder="Date Of Birth" required autofocus ng-model="DOB" >
         </label>
           <label class="item item-input">
-          <input type="email" id="email" class="form-control" placeholder="Enter MailId" required autofocus ng-model="email">
+              <i class="icon ion-email placeholder-icon"></i>
+          <input type="email" id="email" class="form-control" placeholder="Enter MailId" required autofocus ng-model="Email">
         </label>        
         <label class="item item-input">  
-  <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Enter SSO (Ex: ABCDE)" autofocus ng-model="sso1" required>
-        </label>
-          <label class="item item-input">  
-          <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Re-Enter SSO (Ex: ABCDE) " required autofocus ng-model="sso" required>
+            <i class="icon ion-person placeholder-icon"></i>
+  <input ng-minlength="5" ng-maxlength="5" type="text" id="username" class="form-control" placeholder="Enter SSO (Ex: ABCDE)" autofocus ng-model="SSO" required>
         </label>
         <label class="item item-input">
-          <input ng-minlength="5"type="password" id="password" class="form-control" placeholder="Enter Password" required autofocus ng-model="password" required>            
+            <i class="icon ion-key placeholder-icon"></i>
+          <input ng-minlength="5"type="password" id="password" class="form-control" placeholder="Enter Password" required autofocus ng-model="Password" required>            
         </label>
           <label class="item item-input">
-          <input type="text" id="mobile" class="form-control" placeholder="Mobile No" required autofocus ng-model="mobile"> 
+              <i class="icon ion-iphone placeholder-icon"></i>
+          <input type="text" id="mobile" class="form-control" placeholder="Mobile No" required autofocus ng-model="MobileNo"> 
         </label>
           <label class="item item-input">
-          <input type="text" id="address1" class="form-control" placeholder="Address 1" required autofocus ng-model="address1"> 
+              <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" id="address1" class="form-control" placeholder="Address 1" required autofocus ng-model="Address1"> 
         </label>
           <label class="item item-input">
-          <input type="text" id="address2" class="form-control" placeholder="Address 2" required autofocus ng-model="address2"> 
+              <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" id="address2" class="form-control" placeholder="Address 2" required autofocus ng-model="Address2"> 
         </label>
           <label class="item item-input">
-          <input type="text" id="City" class="form-control" placeholder="City" required autofocus ng-model="city"> 
+              <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" id="City" class="form-control" placeholder="City" required autofocus ng-model="City"> 
         </label>
           <label class="item item-input">
-          <input type="text" id="State" class="form-control" placeholder="State" required autofocus ng-model="state"> 
+              <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" id="State" class="form-control" placeholder="State" required autofocus ng-model="State"> 
         </label>
           <label class="item item-input">
-          <input type="text" id="Zip" class="form-control" placeholder="Zip Code" required autofocus ng-model="zip"> 
+              <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" id="Zip" class="form-control" placeholder="Zip Code" required autofocus ng-model="ZipCode"> 
         </label>
           
 <div class="padding">
@@ -60,7 +69,7 @@
         </div>
           <div class="padding">
           <button class="button button-block button-positive padding-horizontal" ng-disabled="myForm.$invalid"
-                  ng-click="register(fname,lname,dob,email,sso1,sso,password,mobile,address1,address2,city,state,zip)">Register</button>
+                  ng-click="register(FirstName,LastName,DOB,Email,SSO,Password,MobileNo,Address1,Address2,City,State,ZipCode)">Register</button>
           </div>
       </div>
             

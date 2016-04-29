@@ -70,6 +70,10 @@ angular.module('starter.services', [])
 				return $http.post(base+'/profile', form);
 			},
             
+            registerUser:function(form){
+                console.log("services.js: SSO from registerUser: " + form.SSO);
+				return $http.post(base+'/registerUser', form);
+            },
             getLibRoomsList: function (form) {
             console.log("SSO from services.js: " + form.SSO);
             return $http.post(base+'/libRoomsList', form);

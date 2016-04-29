@@ -166,7 +166,7 @@ $scope.updateprofile=function(){
                         localStorage.setItem("Email", data.Email);
                         localStorage.setItem("MobileNo", data.MobileNo);
                         localStorage.setItem("Address1", data.Address1);
-                        localStorage.setItem("Address1", data.Address2);
+                        localStorage.setItem("Address2", data.Address2);
                         localStorage.setItem("City", data.City);
                         localStorage.setItem("State", data.State);
                         localStorage.setItem("ZipCode", data.ZipCode);
@@ -174,8 +174,8 @@ $scope.updateprofile=function(){
                         console.log("Last name: " + data.LastName);
                         console.log("Mobile: " + data.Mobile);
                         console.log("Email: " + data.Email);
-                         console.log("Address: " + data.Address1);
-                        console.log("Address: " + data.Address2);
+                        console.log("Address1: " + data.Address1);
+                        console.log("Address2: " + data.Address2);
                         console.log("City: " + data.City);
                         console.log("State: " + data.State);
                         console.log("Zip: " + data.ZipCode);
@@ -273,18 +273,13 @@ $scope.updateprofile=function(){
         $scope.update = function(MobileNo,Address1,Address2,City,State,ZipCode) {
             console.log('Updating user profile');  
             API.editUserProfile({  
-               //FirstName:FirstName,
-               // LastName:LastName,
-               // DOB:DOB,
                 MobileNo:MobileNo,
-               // Email:Email,
                 Address1:Address1,
                 Address2:Address2,
                 City:City,
                 State:State,
                 ZipCode:ZipCode,
-                SSO: SSO
-                //Password: password
+                SSO: SSO 
             }).success(function (data) {
                 if(data != null) {
                     console.log("Valid credentials from controller");
@@ -326,46 +321,56 @@ $scope.pageClass = 'login';
         }
         $scope.pageClass = 'register';
 //$scope.dob = $filter('date')(new Date(input), 'MM-dd-yyyy');
-        $scope.register = function(fname,lname,dob,email,sso1,sso,password,mobile,address1,address2,city,state,zip) {
-            //  inside.postMethod();
-            $http({
-                method: 'POST',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Profile?apiKey=eRFbEzp92JBMvhd1PabC1BJKBxuayXzI',
-                data: JSON.stringify({
-                    FirstName: fname,
-                    LastName: lname,
-                    DOB:dob,
-                    Email:email,
-                    SSO: sso1,
-                    MobileNo:mobile,
-                    Address1:address1,
-                    Address2:address2,
-                    City:city,
-                    State:state,
-                    ZipCode:zip
-                }),
-                contentType: "application/json"
-            })
-            
-            $http({
-                method: 'POST',
-                url: 'https://api.mongolab.com/api/1/databases/studentcompaniondb/collections/Login?apiKey=eRFbEzp92JBMvhd1PabC1BJKBxuayXzI',
-                data: JSON.stringify({
-                    SSO: sso,
-                    Password: password
-                }),
-                contentType: "application/json"
-            }).success(function() {
-               // $scope.SSO = "";
-                $scope.Password = "";
-                alert("User created successfully " +fname+ " " +lname);
+        $scope.register = function(FirstName,LastName,DOB,Email,SSO,Password,MobileNo,Address1,Address2,City,State,ZipCode) {
+            console.log('Registering user profile');  
+            API.registerUser({  
+               FirstName:FirstName,
+               LastName:LastName,
+               DOB:DOB,
+                SSO:SSO,
+               Email:Email,
+                MobileNo:MobileNo,
+                Address1:Address1,
+                Address2:Address2,
+                City:City,
+                State:State,
+                ZipCode:ZipCode,
+                Password: Password
+            }).success(function (data) {
+                if(data != null) {
+                    console.log("Inside RegisterCtrl");
+                       // $rootScope.setToken(data.SSO); 
+                   // console.log("SSO inside ProfEditCtrl" + SSO);
+                    // create a session kind of thing on the client side
+                    alert("User created successfully!");
                 $state.go('login');
-                //$scope.msg ="User created successfully";
-                //$window.location.href="index.html";
-            })
+                //$rootScope.setToken(data.SSO);
+                    localStorage.setItem("SSO",SSO);
+                     localStorage.setItem("FirstName", FirstName);
+                    localStorage.setItem("LastName", LastName);
+                    localStorage.setItem("DOB", DOB);
+                    localStorage.setItem("Email", Email);
+                    localStorage.setItem("MobileNo", MobileNo);
+                    localStorage.setItem("Address1", Address1);
+                    localStorage.setItem("Address2", Address2);
+                    localStorage.setItem("City", City);
+                    localStorage.setItem("State", State);
+                    localStorage.setItem("ZipCode", ZipCode);
+                 //  localStorage.setItem("SSO",sso);
+                    localStorage.setItem("Password",Password);
+                       // localStorage.setItem("FullName", data.FirstName + " " + data.LastName);
+                       // localStorage.setItem("FirstName",fname);
+                      //  localStorage.setItem("Password", data.password);
+                    }
+                    else {
+                        console.log("controllers.js: Unable to create user profile");
+                    }
+
+                }).error(function (error) {
+                    console.log("controllers.js: Error in controller: " + error);
+                    $state.go('login');
+            });
         }
-    
-       
     })
     .controller('RoomReserveCtrl', function($scope, $state, $rootScope, $stateParams, API,ionicDatePicker, $filter, $window) {
         $scope.roomNo = localStorage.getItem("roomNo");
