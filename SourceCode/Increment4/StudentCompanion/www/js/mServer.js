@@ -319,7 +319,7 @@ server.post('/subs', function (req, res, next) {
         console.log("Inside Sub Server " + user.SSO);
         console.log("mServer.js: Inside Sub Server  User: " + user.SSO + " SelectedDate: " + user.selectedDate);
         console.log("mServer.js: Inside Sub Server Selected Date: " + user.selectedDate);
-        db.SAShifts.find({"Profile_ID":{$ne: req.params.SSO},"Date": {$regex: user.selectedDate},"IsSubstitution":{$eq: "Yes"},"IsTaken":{$eq: "No"}},function (err, data) {
+        db.SAShifts.find({"Profile_ID":{$ne: req.params.SSO},"Date": {$regex: user.selectedDate},"IsSubstitution": "Yes","IsTaken": "No"},function (err, data) {
             if(err) {
                 res.writeHead(403, {
                     'Content-Type': 'application/json; charset=utf-8'

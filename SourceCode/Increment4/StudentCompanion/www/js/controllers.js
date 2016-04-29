@@ -127,103 +127,9 @@ angular.module('starter.controllers', ['starter.services', 'ionic-datepicker'])
                         }).success(function (data) {
                             if(data != undefined) {
                                 console.log("Valid Shift details from controller");
-                                console.log("Data Shift Details: " + data.shiftDetails);
+                                console.log("Data Shift Details: " + JSON.stringify(data.shiftDetails));
                                 $scope.shiftDetails = data;
                                 $rootScope.hide();
-
-                              /* $scope.reservedRoomsList = [];
-                                $scope.hrs = {"00:00 - 01:00": 0, "01:00 - 02:00": 0, "02:00 - 03:00": 0, "03:00 - 04:00": 0,
-                                    "04:00 - 05:00": 0,"05:00 - 06:00": 0, "06:00 - 07:00": 0, "07:00 - 08:00": 0, "08:00 - 09:00": 0,
-                                    "09:00 - 10:00": 0, "10:00 - 11:00": 0,"11:00 - 12:00": 0, "12:00 - 13:00": 0,
-                                    "13:00 - 14:00": 0, "14:00 - 15:00": 0, "15:00 - 16:00": 0, "16:00 - 17:00": 0,
-                                    "17:00 - 18:00": 0, "18:00 - 19:00":0, "19:00 - 20:00": 0, "20:00 - 21:00": 0,
-                                    "21:00 - 22:00": 0, "22:00 - 23:00": 0,"23:00 - 0:00": 0};
-
-                                console.log("LibraryCtrl: Valid Lib Rooms details");
-                                $scope.reservedRoomsList = [];
-                                $scope.list = [];
-                                for (var i = 0; i < data.length; i++) {
-                                    //if (data[i].isCompleted == false) {
-                                    $scope.list.push(data[i]);
-                                    //}
-                                }
-                                $scope.concatStr = function(a, b) {
-                                    var begin = a;
-                                    var end = b;
-                                    if(a<10) {
-                                        begin = "0" + a;
-                                    }
-                                    if(b<10) {
-                                        end = "0" + b;
-                                    }
-                                    return begin + ":00 - " + end + ":00";
-                                }
-                                for(var i =0; i< $scope.list.length; i++) {
-                                    $scope.list[i].Dt = $filter('date')(new Date($scope.list[i].EndTime), 'EEE MM-dd-yyyy');
-                                    $scope.startHr = $filter('date')(new Date($scope.list[i].StartTime), 'HH');
-                                    $scope.endHr  = $filter('date')(new Date($scope.list[i].EndTime), 'HH');
-                                    console.log("StartTime: " + $filter('date')(new Date($scope.list[i].StartTime), 'HH:mm'));
-                                    $scope.list[i].StartTime = $filter('date')(new Date($scope.list[i].StartTime), 'HH:mm');
-                                    console.log("EndtTime: " + $filter('date')(new Date($scope.list[i].EndTime), 'HH:mm'));
-                                    $scope.list[i].EndTime = $filter('date')(new Date($scope.list[i].EndTime), 'HH:mm');
-                                    $scope.stHr = parseInt($scope.startHr);
-                                    $scope.enHr = parseInt($scope.endHr);
-
-                                    var beginHr = $scope.stHr;
-                                    for(var j=$scope.stHr; j<$scope.enHr; j++) {
-
-                                        var nextHr = 0;
-                                        if($scope.startHr == 23) {
-                                            nextHr = "0";
-                                        }
-                                        else {
-                                            nextHr = j + 1;
-                                        }
-                                        //var slotID = "slot" + $scope.concatStr(beginHr, nextHr);
-                                        var slotID = $scope.concatStr(beginHr, nextHr);
-                                        console.log("Slot ID: " + slotID);
-                                        beginHr = nextHr;
-                                        $scope.hrs[slotID] = 1;
-                                    }
-
-                                    //for(var k=0;k<=$scope.hrs.length;k++) {
-                                    //
-                                    //}
-                                    console.log("FinalSlot: " + JSON.stringify($scope.hrs));
-                                    //$scope.hrs[slotID] =
-
-
-
-                                    //console.log("StartTime: " + new Date($scope.list[i].StartTime));
-                                    console.log("Record " + i + ": [ " + $scope.list[i]._id + ", " + $scope.list[i].StartTime + ", " + $scope.list[i].EndTime + ", " + $scope.list[i].Room_ID + " ]");
-                                }
-                                $scope.availableHrs = [];
-
-                                for(var hr in $scope.hrs) {
-                                    if($scope.hrs.hasOwnProperty(hr)) {
-                                        if($scope.hrs[hr] == 0) {
-                                            $scope.availableHrs.push(hr);
-                                        }
-                                    }
-                                }
-                                console.log("cocntrollers.js: Available hours: ");
-                                for(var p=0; p<$scope.availableHrs.length; p++)
-                                {
-                                    console.log($scope.availableHrs[p]);
-                                }
-                                console.log("List is: " + $scope.list);
-                                $scope.reservedRoomsList = $scope.list;
-                                //$scope.ownReservedRoomsList = data;
-                                if($scope.list.length == 0)
-                                {
-                                    document.getElementById('nodata').innerHTML = "<p><h5><strong>No reservations were made on this day!!!</strong></h5></p>";
-                                }
-                                else {
-                                    document.getElementById('nodata').innerHTML = "";
-                                }
-
-                                $rootScope.hide();*/
-
                             }
                             else {
                                 console.log("SamenuCtrl: Error occured while fetching the  shift list");
@@ -246,15 +152,17 @@ angular.module('starter.controllers', ['starter.services', 'ionic-datepicker'])
                         // selectedRoomNo: $scope.roomNo
                     }).success(function (data) {
                         if(data != undefined) {
-                            console.log("Valid Substitutions from controller");
-                            console.log("Data Substitutions " + data.subDetails);
+                          console.log("Valid Substitutions from controller "+JSON.stringify(data));
+                            //console.log("Data Substitutions " + data.subDetails);
                             $scope.subDetails = data;
-                            $rootScope.hide();
+                            //$rootScope.hide();
+                            console.log("Valid Substitutions from controller subDetails: "+JSON.stringify($scope.subDetails));
+
                         }
                         else {
                             console.log("SamenuCtrl: Error occured while fetching the  substitution list");
                             $rootScope.hide();
-                            $rootScope.notify("SaamenuCtrl: Error occured while fetching the substitution list");
+                            $rootScope.notify("SamenuCtrl: Error occured while fetching the substitution list");
                             $state.go('app.home');
 
                         }
@@ -266,7 +174,7 @@ angular.module('starter.controllers', ['starter.services', 'ionic-datepicker'])
                         $state.go('app.home');
                     });
 
-                },
+                }
                /* disabledDates: $scope.disabledDates,
                 from: $filter('date')(new Date(), 'yyyy-MM-dd'),
                 to: new Date(2022, 10, 30),
